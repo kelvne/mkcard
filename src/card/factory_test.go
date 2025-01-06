@@ -100,6 +100,40 @@ func TestNewCardFromArgs(t *testing.T) {
 	})
 }
 
+func TestNewCardArgsFromOsArgs(t *testing.T) {
+	t.Run("TestNewCardArgsFromOsArgs", func(t *testing.T) {
+		setOsArgs()
+		args := args.GetArgs()
+
+		if len(args) != 4 {
+			t.Errorf("Expected 4 arguments, got %d", len(args))
+		}
+
+		cardArgs := card.NewCardArgsFromOsArgs()
+
+		if cardArgs == nil {
+			t.Error("Expected cardArgs to not be nil")
+			return
+		}
+
+		if cardArgs.BaseText != args[3] {
+			t.Error("Expected base text to be right")
+		}
+
+		if cardArgs.Name != args[0] {
+			t.Errorf("Expected name to be %s, got %s", testName, cardArgs.Name)
+		}
+
+		if cardArgs.Cost != 5 {
+			t.Errorf("Expected cost to be %d, got %d", 5, cardArgs.Cost)
+		}
+
+		if cardArgs.Power != 3 {
+			t.Errorf("Expected power to be %d, got %d", 3, cardArgs.Power)
+		}
+	})
+}
+
 func setOsArgs() {
 	os.Args = []string{testCmd, testName, testCost, testPower, testBaseText}
 }

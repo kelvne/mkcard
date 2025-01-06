@@ -1,6 +1,8 @@
 package main
 
-import "github.com/kelvne/mkcard/src/args"
+import (
+	"github.com/kelvne/mkcard/src/args"
+)
 
 var arguments []string
 
