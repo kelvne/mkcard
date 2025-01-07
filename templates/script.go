@@ -1,4 +1,6 @@
-extends Node
+package templates
+
+const ScriptTemplate = `extends Node
 
 const card_name: String = "{{.Name}}"
 const base_cost: int = {{.Cost}}
@@ -13,3 +15,4 @@ var alterations: Dictionary = {
 
 func _ready() -> void:
 	pass
+`
