@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"crypto/rand"
+	"strings"
 
 	"github.com/btcsuite/btcutil/base58"
 )
@@ -12,5 +13,5 @@ func GenerateGodotUID() string {
 	byteArray := make([]byte, 16)
 	rand.Read(byteArray)
 
-	return base58.Encode(byteArray)
+	return strings.ToLower(base58.Encode(byteArray))
 }
