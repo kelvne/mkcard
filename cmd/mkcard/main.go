@@ -16,25 +16,34 @@ var (
 	cardArgs  *card.CardArgs
 	crd       *card.Card
 	cwd       string
+	err       error
 )
 
-func init() {
-	arguments = args.GetArgs()
+func main() {
+	if exitCode := run(args.GetArgs()); exitCode != 0 {
+		panic(exitCode)
+	}
+
+	os.Exit(0)
+}
+
+func run(args []string) int {
+	arguments = args
+
 	validateArgs()
 	cardArgs = card.NewCardArgsFromOsArgs()
 	crd = card.NewCardFromArgs(cardArgs)
-}
 
-func main() {
-	var err error
 	cwd, err = os.Getwd()
 	if err != nil {
 		fmt.Println("Unable to reach current working directory, probably thanks to symbolic links")
-		panic(1)
+		return 1
 	}
 
 	makeTscn()
 	makeGdScript()
+
+	return 0
 }
 
 func validateArgs() {
