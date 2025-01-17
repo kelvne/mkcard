@@ -1,3 +1,5 @@
 *.gd
 *.tscn
-cover.out
+build/
+cover.*
+.vscode
