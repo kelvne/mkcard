@@ -3,7 +3,7 @@ name: Check coverage and generate badge
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
